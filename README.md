@@ -1,9 +1,7 @@
-Sure 👍
-Below is a **detailed, professional README** you can use directly for your project. It’s written in a clean, real-world style that fits technical assessments, portfolios, or GitHub projects.
 
 ---
 
-# 🐱 Cat API & Frontend Application
+# 🐱 Cat API powered by AI model
 
 ## 📌 Project Overview
 
