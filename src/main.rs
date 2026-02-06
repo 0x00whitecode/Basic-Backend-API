@@ -62,13 +62,15 @@ fn api_config(cfg: &mut web::ServiceConfig){
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    println!("Listening on port 8080");
+    let port = std::env::var("PORT").unwrap_or_else(|_| "8080".to_string());
+    let bind_addr = format!("0.0.0.0:{}", port);
+    println!("Listening on {}", bind_addr);
     HttpServer::new(|| {
         App::new()
        .configure(api_config)
        
     })
-    .bind("127.0.0.1:8080")?
+    .bind(&bind_addr)?
     .run()
     .await
 }

@@ -1,11 +1,34 @@
-FROM rust:1.59.0
+# Build stage
+FROM rust:1.75 as builder
 
 WORKDIR /app
 
-RUN apt update && apt install lld clang -y 
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    lld \
+    clang \
+    pkg-config \
+    libssl-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY . .
 
 RUN cargo build --release
 
-ENTRYPOINT ["./target/release/hng_task_one"]
+# Runtime stage
+FROM debian:bookworm-slim
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y \
+    ca-certificates \
+    libssl3 \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=builder /app/target/release/basi_api /app/
+
+EXPOSE 8080
+
+ENV PORT=8080
+
+CMD ["./basi_api"]
