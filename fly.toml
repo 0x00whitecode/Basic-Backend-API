@@ -1,10 +1,10 @@
-# fly.toml app configuration file generated for basic-backend-api on 2026-02-06T03:04:07Z
+# fly.toml app configuration file generated for basic-backend-api on 2026-02-06T03:31:27Z
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
 app = 'basic-backend-api'
-primary_region = 'ams'
+primary_region = 'lhr'
 
 [build]
 
@@ -20,4 +20,4 @@ primary_region = 'ams'
   memory = '1gb'
   cpu_kind = 'shared'
   cpus = 1
-  memory_mb = 256
+  memory_mb = 1024
