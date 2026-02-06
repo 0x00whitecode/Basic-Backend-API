@@ -1,20 +1,23 @@
-# fly.toml app configuration file generated for your Rust application
+# fly.toml app configuration file generated for basic-backend-api on 2026-02-06T03:04:07Z
+#
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
 
-app = "basi-api"
-primary_region = "iad"
+app = 'basic-backend-api'
+primary_region = 'ams'
 
 [build]
-builder = "docker"
-dockerfile = "./Dockerfile"
 
 [http_service]
-internal_port = 8080
-force_https = true
-auto_stop_machines = true
-auto_start_machines = true
-min_machines_running = 1
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
 
 [[vm]]
-memory = "256mb"
-cpus = 1
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
+  memory_mb = 256
